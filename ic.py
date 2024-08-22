@@ -35,7 +35,6 @@ if a is not None:
     # Call the query function with the file path
     try:
         output = query(file_path)[0]['generated_text']
-
         st.text(output)
     except FileNotFoundError:
         st.error(f"File not found: {file_path}")
@@ -44,26 +43,19 @@ if a is not None:
 else:
     st.info("Please upload an image file.")
 
-
-import base64
-
-def get_img_as_base64(file):
-    with open(file,"rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-img = get_img_as_base64("589353.jpg")
+# Use an external URL for the background image
+bg_image_url = "https://in.images.search.yahoo.com/images/view;_ylt=AwrKBBJMXcdmAOIBCXq9HAx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzE5NmViYTg5MDJiZGI5YmFmMDNmMWE0YjA5MmVhOWM2BGdwb3MDMQRpdANiaW5n?back=https%3A%2F%2Fin.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dnature%2Bimages%26type%3DE210IN885G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D1&w=1920&h=1440&imgurl=wallpaperaccess.com%2Ffull%2F1688623.jpg&rurl=https%3A%2F%2Fwallpaperaccess.com%2Fnature-scenery&size=685.8KB&p=nature+images&oid=196eba8902bdb9baf03f1a4b092ea9c6&fr2=piv-web&fr=mcafee&tt=Nature+Scenery+Wallpapers+-+Top+Free+Nature+Scenery+Backgrounds+...&b=0&ni=21&no=1&ts=&tab=organic&sigr=mQhhBN7XtcD7&sigb=o3uo2PapXcwO&sigi=DH_lSpCBP_Pc&sigt=dhN8v_YC3Oz3&.crumb=2b0tlBiWEP8&fr=mcafee&fr2=piv-web&type=E210IN885G0"  # Replace with your image URL
 
 page_bg_img = f"""
-
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image :url("data:image/png;base64,{img}");
-background-size : cover;
+background-image: url("{bg_image_url}");
+background-size: cover;
 }}
-[data-testid="stHeader"]{{
-background:rgba(0,0,0,0);
+[data-testid="stHeader"] {{
+background: rgba(0, 0, 0, 0);
 }}
 </style>
-
 """
+
 st.markdown(page_bg_img, unsafe_allow_html=True)
