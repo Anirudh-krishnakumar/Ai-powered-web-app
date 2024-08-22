@@ -18,4 +18,6 @@ image_bytes = query({
 import io
 from PIL import Image
 image = Image.open(io.BytesIO(image_bytes))
-st.image(image)
+if (st.button()):
+	
+	st.image(image)
