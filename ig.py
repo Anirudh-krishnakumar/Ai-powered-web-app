@@ -18,6 +18,6 @@ image_bytes = query({
 import io
 from PIL import Image
 image = Image.open(io.BytesIO(image_bytes))
-if (st.button()):
+if (st.button("create")):
 	
 	st.image(image)
